@@ -1,0 +1,126 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "logs": "Health Logs",
+    "medicines": "Medicines",
+    "reminders": "Reminders",
+    "appointments": "Appointments",
+    "analytics": "Analytics",
+    "assistant": "AI Assistant",
+    "settings": "Settings",
+    "login": "Sign In",
+    "register": "Get Started",
+    "logout": "Sign Out",
+    "quickLog": "Quick Log",
+    "takeDose": "Take Dose"
+  },
+  "landing": {
+    "heroTitle": "Precision Clinical Health, Visualized in 3D",
+    "heroSubtitle": "Log vitals in 30 seconds, sync medication adherence, and consult our safe bio-wellness AI companion.",
+    "ctaStart": "Launch Companion",
+    "ctaSignIn": "Sign In",
+    "featuresTitle": "Clinical Telemetry & Intelligent Care",
+    "featuresSubtitle": "Engineered for clarity, biometric accuracy, and user privacy.",
+    "card3D": "Real-time 3D Biometrics",
+    "card3DDesc": "Anatomical heart rate pulse simulation synchronized with your recorded blood pressure and pulse.",
+    "cardSafety": "Clinically Safe AI",
+    "cardSafetyDesc": "Multi-stage crisis pre-filters and strict non-diagnostic wellness educational guidance.",
+    "cardAdherence": "Adherence & Medication",
+    "cardAdherenceDesc": "Idempotent schedule tracking, missed dose alerts, and web push reminders."
+  },
+  "dashboard": {
+    "title": "Clinical Overview",
+    "subtitle": "Today's biometric readings and scheduled care plan",
+    "pulseTelemetry": "Real-time 3D Pulse Telemetry",
+    "adherenceRate": "Today's Adherence",
+    "todayMedicines": "Today's Prescriptions",
+    "upcomingAppointments": "Upcoming Appointments",
+    "noMedicines": "No prescriptions scheduled for today.",
+    "noAppointments": "No appointments scheduled."
+  },
+  "logs": {
+    "title": "Health Logs & Telemetry",
+    "subtitle": "Track blood pressure, heart rate, blood glucose, sleep, and water intake",
+    "addLog": "Log New Metric",
+    "type": "Metric Type",
+    "value": "Recorded Value",
+    "unit": "Unit",
+    "note": "Clinical / Personal Note",
+    "save": "Save Entry",
+    "cancel": "Cancel",
+    "noLogs": "No health logs found for this filter."
+  },
+  "medicines": {
+    "title": "Medication Manager",
+    "subtitle": "Track adherence, dose times, and inventory refills",
+    "addMedicine": "Add Medication",
+    "name": "Medication Name",
+    "dose": "Dosage (e.g. 500mg)",
+    "form": "Form (Tablet/Capsule/Syrup)",
+    "times": "Scheduled Times",
+    "markTaken": "Taken",
+    "markSkipped": "Skip",
+    "markSnoozed": "Snooze (15m)",
+    "adherenceScore": "Overall Adherence"
+  },
+  "reminders": {
+    "title": "Care Reminders & Alerts",
+    "subtitle": "Configured recurrence schedules and Web Push notifications",
+    "addReminder": "Create Reminder",
+    "pushStatus": "Web Push Notifications",
+    "enablePush": "Enable Web Push",
+    "disablePush": "Disable Push",
+    "activeReminders": "Active Reminders",
+    "noReminders": "No reminders scheduled."
+  },
+  "appointments": {
+    "title": "Clinical Appointments",
+    "subtitle": "Doctor visits, telehealth links, and prep notes",
+    "newAppointment": "Book Appointment",
+    "doctor": "Physician / Specialist",
+    "location": "Location / Telehealth Link",
+    "date": "Date & Time",
+    "notes": "Prep Notes",
+    "noAppointments": "No doctor visits scheduled."
+  },
+  "analytics": {
+    "title": "Biometric Analytics & Trends",
+    "subtitle": "Multi-day trend analysis, adherence heatmap, and stability indices",
+    "range7d": "7 Days",
+    "range30d": "30 Days",
+    "range90d": "90 Days",
+    "bpTrend": "Blood Pressure Trends (Systolic / Diastolic)",
+    "adherenceHeatmap": "Medication Adherence Heatmap",
+    "currentStreak": "Current Logging Streak",
+    "days": "Days"
+  },
+  "assistant": {
+    "title": "AI Bio-Wellness Assistant",
+    "subtitle": "Lifestyle and wellness education contextualized to your health logs",
+    "disclaimer": "Disclaimer: General wellness information only. Not medical advice or diagnosis. Always consult a qualified physician.",
+    "placeholder": "Ask about hydration, sleep habits, or healthy nutrition...",
+    "send": "Send Message",
+    "clearHistory": "Clear Chat History"
+  },
+  "settings": {
+    "title": "Platform Settings & Privacy",
+    "subtitle": "Manage clinical profile, AI context consent, notifications, and data rights",
+    "profile": "User Profile",
+    "aiConsent": "AI Health Context Sharing",
+    "aiConsentDesc": "Allows the wellness assistant to receive de-identified summaries of your last 7 days of logs.",
+    "theme": "Interface Theme",
+    "language": "Display Language",
+    "exportData": "Export All Medical Data (JSON)",
+    "deleteAccount": "Delete Account Permanently"
+  },
+  "common": {
+    "loading": "Loading biometric telemetry...",
+    "error": "An error occurred. Please try again.",
+    "success": "Action completed successfully.",
+    "bpm": "BPM",
+    "mmHg": "mmHg",
+    "mgDl": "mg/dL",
+    "ml": "mL",
+    "hours": "hrs"
+  }
+}

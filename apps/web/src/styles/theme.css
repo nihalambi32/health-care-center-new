@@ -1,0 +1,25 @@
+:root {
+  --bg-canvas: #F8FAFC;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border-color: #E2E8F0;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-card-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(226, 232, 240, 0.8);
+  --primary-glow: rgba(14, 165, 233, 0.4);
+  --scrollbar-thumb: #CBD5E1;
+}
+
+.dark {
+  --bg-canvas: #060B14;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-color: #1E293B;
+  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-card-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(30, 41, 59, 0.8);
+  --primary-glow: rgba(14, 165, 233, 0.3);
+  --scrollbar-thumb: #1E293B;
+}
