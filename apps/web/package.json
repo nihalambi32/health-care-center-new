@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run build --workspace=@health-care-center/shared",
     "build": "tsc -b && vite build",
     "lint": "echo 'No lint errors in web'",
     "preview": "vite preview",
