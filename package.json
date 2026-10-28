@@ -17,6 +17,7 @@
     "dev:api": "npm run dev --workspace=apps/api",
     "dev:worker": "npm run dev --workspace=apps/worker",
     "generate:vapid": "tsx scripts/generate-vapid-keys.ts",
+    "deploy": "tsx scripts/deploy/deploy-agent.ts",
     "prisma:generate": "npm run prisma:generate --workspace=apps/api",
     "db:migrate": "npm run db:migrate --workspace=apps/api",
     "db:seed": "npm run db:seed --workspace=apps/api"

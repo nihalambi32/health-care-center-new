@@ -1,0 +1,67 @@
+name: Automated Deploy Agent (Render + Verification)
+
+on:
+  workflow_run:
+    workflows: ["Daily Health Companion Backend CI"]
+    types:
+      - completed
+    branches:
+      - main
+      - staging
+
+concurrency:
+  group: deploy-${{ github.event.workflow_run.head_branch || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Render with Health Verification & Rollback
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    environment:
+      name: ${{ github.event.workflow_run.head_branch == 'main' && 'production' || 'staging' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Filter Out Frontend & Docs-Only Commits
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            backend:
+              - 'apps/api/**'
+              - 'apps/worker/**'
+              - 'packages/**'
+              - 'scripts/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'render.yaml'
+
+      - name: Set up Node.js 20
+        if: steps.filter.outputs.backend == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        if: steps.filter.outputs.backend == 'true'
+        run: npm ci
+
+      - name: Execute Deploy Agent CLI
+        if: steps.filter.outputs.backend == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.event.workflow_run.head_sha }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_API_SERVICE_ID: ${{ secrets.RENDER_API_SERVICE_ID }}
+          RENDER_WORKER_SERVICE_ID: ${{ secrets.RENDER_WORKER_SERVICE_ID }}
+          API_URL: ${{ secrets.API_URL }}
+          DEPLOY_NOTIFICATION_WEBHOOK_URL: ${{ secrets.DEPLOY_NOTIFICATION_WEBHOOK_URL }}
+        run: |
+          ENV_NAME="${{ github.event.workflow_run.head_branch == 'main' && 'production' || 'staging' }}"
+          npm run deploy -- --env "$ENV_NAME" --commit-sha "${{ github.event.workflow_run.head_sha }}"
