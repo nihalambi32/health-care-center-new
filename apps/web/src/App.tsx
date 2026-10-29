@@ -4,6 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './lib/queryClient';
 import { AppRoutes } from './routes';
 import { useUIStore } from './store/uiStore';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
 
 export const App: React.FC = () => {
   const theme = useUIStore((state) => state.theme);
@@ -17,11 +18,13 @@ export const App: React.FC = () => {
   }, [theme]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 };
 

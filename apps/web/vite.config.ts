@@ -10,6 +10,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    target: 'es2020',
+    modulePreload: {
+      polyfill: true,
+    },
+    sourcemap: false,
+    chunkSizeWarningLimit: 1500,
+  },
   server: {
     port: 5173,
     proxy: {
