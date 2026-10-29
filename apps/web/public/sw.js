@@ -1,15 +1,18 @@
 // Service Worker for offline shell and push notification handling
-const CACHE_NAME = 'dhc-v2-cache-v1';
+const CACHE_NAME = 'dhc-v2-cache-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/manifest.webmanifest'
+  '/manifest.webmanifest',
+  '/vite.svg'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+      return cache.addAll(STATIC_ASSETS).catch(() => {
+        // Continue even if some optional asset fails to precache
+      });
     })
   );
   self.skipWaiting();
@@ -32,19 +35,25 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  // Ignore API requests
+  // Ignore API requests and non-http(s) requests
   if (event.request.url.includes('/api/')) return;
+  if (!event.request.url.startsWith('http')) return;
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      return (
-        cached ||
-        fetch(event.request).catch(() => {
-          if (event.request.mode === 'navigate') {
-            return caches.match('/index.html');
-          }
-        })
-      );
+      if (cached) {
+        return cached;
+      }
+      return fetch(event.request).catch(async () => {
+        if (event.request.mode === 'navigate') {
+          const indexCached = await caches.match('/index.html');
+          if (indexCached) return indexCached;
+        }
+        return new Response('', {
+          status: 404,
+          statusText: 'Not Found in offline cache'
+        });
+      });
     })
   );
 });
@@ -62,8 +71,8 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: data.body,
-    icon: '/icons/icon-192.png',
-    badge: '/icons/icon-192.png',
+    icon: '/vite.svg',
+    badge: '/vite.svg',
     data: data.data || {},
     vibrate: [100, 50, 100],
     actions: [
