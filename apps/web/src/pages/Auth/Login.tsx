@@ -24,6 +24,16 @@ export const LoginPage: React.FC = () => {
     }
   };
 
+  const handleDemoAccess = async () => {
+    try {
+      await login.mutateAsync({ email: 'patient@dailyhealth.internal', password: 'demo-password' });
+      addToast('Welcome! Exploring in Preview / Demo Mode.', 'success');
+      navigate('/dashboard');
+    } catch {
+      addToast('Could not start demo session.', 'error');
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50 dark:bg-obsidian-950">
       <Card className="w-full max-w-md p-8 glass-panel space-y-6">
@@ -61,6 +71,15 @@ export const LoginPage: React.FC = () => {
 
           <Button type="submit" variant="primary" className="w-full" isLoading={login.isPending}>
             Sign In
+          </Button>
+
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-full"
+            onClick={handleDemoAccess}
+          >
+            Explore in Demo Mode
           </Button>
         </form>
 

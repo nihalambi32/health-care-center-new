@@ -1,10 +1,12 @@
 // Service Worker for offline shell and push notification handling
-const CACHE_NAME = 'dhc-v2-cache-v2';
+const CACHE_NAME = 'dhc-v2-cache-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
-  '/vite.svg'
+  '/vite.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
